@@ -1,0 +1,23 @@
+#include <ESP8266WiFi.h>
+
+const int ldrPin = A0; // LDR connected to A0
+const int ledPin = D1; // LED connected to D1
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // Set LED pin as output
+  Serial.begin(115200); // Start serial communication
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin); // Read the LDR value
+  Serial.println(ldrValue); // Print the LDR value to the Serial Monitor
+
+  // Threshold logic to control the LED
+  if (ldrValue <= 300) { // Adjust the threshold value as needed
+    digitalWrite(ledPin, HIGH); // Turn ON the LED
+  } else {
+    digitalWrite(ledPin, LOW); // Turn OFF the LED
+  }
+
+  delay(500); // Delay for a short period
+}
